@@ -4,6 +4,10 @@
     https://api.github.com/users/<your name>
 */
 
+const response = axios.
+  get("https://api.github.com/users/jayaramsivaramannair");
+
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -11,6 +15,8 @@
 
     Skip to STEP 3.
 */
+
+response.then(({data}) => console.log(data));
 
 /*
   STEP 4: Pass the data received from Github into your function,
