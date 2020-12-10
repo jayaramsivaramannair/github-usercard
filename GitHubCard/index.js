@@ -5,7 +5,7 @@
 */
 
 
-
+/* Response from get request is below after definition of componentBuilder function */
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -14,6 +14,8 @@
 
     Skip to STEP 3.
 */
+
+/* Response from get request is added to the components using componentBuilder function */
 
 /*
   STEP 4: Pass the data received from Github into your function,
@@ -107,7 +109,8 @@ axios.
   get("https://api.github.com/users/jayaramsivaramannair").
   then((response) => {
       const data = response.data;
-      console.log(componentBuilder(data));
+      let cardsContainer = document.querySelector('div.cards');
+      cardsContainer.appendChild(componentBuilder(data));
   });
 
 
