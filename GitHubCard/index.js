@@ -4,8 +4,7 @@
     https://api.github.com/users/<your name>
 */
 
-const response = axios.
-  get("https://api.github.com/users/jayaramsivaramannair");
+
 
 
 /*
@@ -15,8 +14,6 @@ const response = axios.
 
     Skip to STEP 3.
 */
-
-response.then(({data}) => console.log(data));
 
 /*
   STEP 4: Pass the data received from Github into your function,
@@ -55,6 +52,64 @@ const followersArray = [];
       </div>
     </div>
 */
+
+
+function componentBuilder(data) {
+  const individualCard = document.createElement('div');
+  individualCard.classList.add('card');
+
+  const profileImage = document.createElement('img');
+  profileImage.setAttribute('src', `${data.avatar_url}`);
+
+  const cardInformation = document.createElement('div');
+  cardInformation.classList.add('card-info');
+
+  const actualName = document.createElement('h3');
+  actualName.classList.add("name");
+  actualName.textContent = `${data.name}`;
+
+  const userName = document.createElement('p');
+  userName.classList.add('username');
+  userName.textContent = `${data.login}`;
+
+  const userLocation = document.createElement('p');
+  userLocation.textContent = `Location: ${data.location}`;
+
+  const userProfile = document.createElement('p');
+  userProfile.textContent = "Profile: ";
+  const userProfileLink = document.createElement('a');
+  userProfileLink.setAttribute('href', `${data.html_url}`);
+  userProfileLink.textContent = `${data.html_url}`;
+  userProfile.appendChild(userProfileLink);
+
+  const userFollowers = document.createElement('p');
+  userFollowers.textContent = `Followers: ${data.followers}`;
+  const userFollowing = document.createElement('p');
+  userFollowing.textContent = `Following: ${data.following}`;
+  const userBio = document.createElement('p');
+  userBio.textContent = `Bio: ${data.bio}`;
+
+  cardInformation.appendChild(actualName);
+  cardInformation.appendChild(userName);
+  cardInformation.appendChild(userLocation);
+  cardInformation.appendChild(userProfile);
+  cardInformation.appendChild(userFollowers);
+  cardInformation.appendChild(userFollowing);
+  cardInformation.appendChild(userBio);
+
+  individualCard.appendChild(profileImage);
+  individualCard.appendChild(cardInformation);
+  
+  return individualCard;
+}
+
+axios.
+  get("https://api.github.com/users/jayaramsivaramannair").
+  then((response) => {
+      const data = response.data;
+      console.log(componentBuilder(data));
+  });
+
 
 /*
   List of LS Instructors Github username's:
