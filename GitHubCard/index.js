@@ -71,13 +71,15 @@ function componentBuilder(data) {
   return individualCard;
 }
 
+let cardsContainer = document.querySelector('div.cards');
+
 axios.
   get("https://api.github.com/users/jayaramsivaramannair").
   then((response) => {
       const data = response.data;
-      let cardsContainer = document.querySelector('div.cards');
       cardsContainer.appendChild(componentBuilder(data));
-  });
+  }).
+  catch((error) => console.log(error));
 
 
 /*
@@ -98,11 +100,11 @@ followersArray.forEach((follower) => {
     get("https://api.github.com/users/" + follower).
     then((response) => {
       let data = response.data;
-      console.log(data);
-      let cardsContainer = document.querySelector('div.cards');
       cardsContainer.appendChild(componentBuilder(data));
-    })
+    }).
+    catch((error) => console.log(error));
 });
+
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -136,3 +138,12 @@ followersArray.forEach((follower) => {
     luishrd
     bigknell
 */
+
+/*STRETCH GOAL 1: PROGRAMMATICALLY CREATING A LIST OF USERS AND THEN ADDING THEM TO THE DOM */
+
+
+
+
+
+
+
