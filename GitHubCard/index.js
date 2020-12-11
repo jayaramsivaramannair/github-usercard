@@ -95,6 +95,7 @@ axios.
 
 const followersArray = ['pc', 'collision', 'balajis', 'tetondan', 'dustinmyers'];
 
+/*
 followersArray.forEach((follower) => {
   axios.
     get("https://api.github.com/users/" + follower).
@@ -104,6 +105,7 @@ followersArray.forEach((follower) => {
     }).
     catch((error) => console.log(error));
 });
+*/
 
 
 /*
@@ -140,9 +142,16 @@ followersArray.forEach((follower) => {
 */
 
 /*STRETCH GOAL 1: PROGRAMMATICALLY CREATING A LIST OF USERS AND THEN ADDING THEM TO THE DOM */
-
-
-
+// Programatically updates the profiles followed by a user and adds a new card to the DOM for each updated following.
+axios.get("https://api.github.com/users/jayaramsivaramannair/following").
+then((response) => {
+  response.data.forEach((res) => {
+    axios.get("https://api.github.com/users/" + res.login).
+    then((response) => {
+      cardsContainer.appendChild(componentBuilder(response.data));
+    })
+  });
+})
 
 
 
